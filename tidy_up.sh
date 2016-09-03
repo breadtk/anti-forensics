@@ -60,7 +60,7 @@ tidy_rm /home/*/.gnupg/pubring.*
 # SSH cleanup
 tidy_rm /root/.ssh/*
 tidy_rm /home/*/.ssh/*
-
+tidy_rm /tmp/ssh*
 # Password database cleanup
 # find all *.kdb, *.kdbx files
 
