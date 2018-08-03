@@ -2,12 +2,8 @@
 #
 # Author: Osman Surkatty (osman@surkatty.org)
 #
-# A simple AWS Lambda function which can be used to periodically clean out your
-# Twitter timeline.
-# 
-# For more information about uploading Twitter Python module to Lambda with your
-# function, read "Creating a Deployment Package (Python)"
-# https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html
+# A simple script which can be used to periodically clean out your Twitter
+# timeline.
 
 from datetime import *
 from twitter import *
@@ -15,7 +11,9 @@ import sys
 import time
 
 def lambda_handler(event, context):
-    older_than = 30
+    older_than = 30 # days
+
+    # From: https://apps.twitter.com/ or https://developer.twitter.com/
     token = ""
     token_key = ""
     con_secret = ""
