@@ -2,16 +2,16 @@
 # Ideally these entires should be both in you privileged and regular user
 # contexts to ensure both are properly cleaned on an ongoing basis.
 
-# Clean-out OSX's trash.
-@hourly /usr/bin/srm -fszr $HOME/.Trash/* &>/dev/null
-@hourly /usr/bin/srm -fszr $HOME/.Trash/.??* &>/dev/null
+# Clean-out macOS's trash can.
+@hourly /bin/rm -fr $HOME/.Trash/* &>/dev/null
+@hourly /bin/rm -fr $HOME/.Trash/.??* &>/dev/null
 
 # Scrub files which may leak metadata about old files.
-@hourly /usr/bin/srm -fszr $HOME/.DS_Store $HOME/*/.DS_Store &>/dev/null
+@hourly /bin/rm -fr $HOME/.DS_Store $HOME/*/.DS_Store &>/dev/null
 
 # Keep Downloads directory clean
-@daily /usr/bin/srm -fszr $HOME/Downloads/* &>/dev/null
-@daily /usr/bin/srm -fszr $HOME/Downloads/.??* &>/dev/null
+@daily /bin/rm -fr $HOME/Downloads/* &>/dev/null
+@daily /bin/rm -fr $HOME/Downloads/.??* &>/dev/null
 
 # OSX keeps a record of all files ever downloaded in a SQLite DB for
 # quarantined files. This will do a simple DB dump.
