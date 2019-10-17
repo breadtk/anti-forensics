@@ -1,23 +1,20 @@
-# Keep your system relatively clean by keeping these entries in your crontab.
-# Ideally these entires should be both in you privileged and regular user
-# contexts to ensure both are properly cleaned on an ongoing basis.
+# Keep your macOS system relatively clean by removing unnecessary information
+# from it.
 
 # Clean-out macOS's trash can.
 @hourly /bin/rm -fr $HOME/.Trash/* &>/dev/null
 @hourly /bin/rm -fr $HOME/.Trash/.??* &>/dev/null
 
-# Scrub files which may leak metadata about old files.
-@hourly /bin/rm -fr $HOME/.DS_Store $HOME/*/.DS_Store &>/dev/null
+# Scrub .DS_Store files which contain metadata about old files.
+@hourly find $HOME -type f -name .DS_Store -print0 | xargs -0 rm &>/dev/null
 
-# Keep Downloads directory clean
 @daily /bin/rm -fr $HOME/Downloads/* &>/dev/null
 @daily /bin/rm -fr $HOME/Downloads/.??* &>/dev/null
 
-# OSX keeps a record of all files ever downloaded in a SQLite DB for
-# quarantined files. This will do a simple DB dump.
-@daily sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent' &>/dev/null
+# macOS keeps a record of all files ever quarantined/downloaded, let's clean
+# that up.
+@daily sqlite3 $HOME/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2 'delete from LSQuarantineEvent' &>/dev/null
 
-# Empty out log files located in ~/Library insecurely. The reason why we don't
-# delete these files is that most poorly written applications handle missing log
-# files poorly.
+# Poorly written applications cannot handle missing log files, so we'll just
+# null them out.
 @daily find $HOME/Library/ -name "*.log" -type f -print0 | xargs -0 -J % -n 1 cp -v /dev/null "%" &>/dev/null
