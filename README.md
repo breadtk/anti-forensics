@@ -15,6 +15,7 @@ submit a pull request.
 
 # Other relevant repos/gists
 Here's a collection of other repositories that may be of interest to you:
+* [Freedom of the Press's Dangerzone](https://github.com/freedomofpress/dangerzone)
 * [int0x80's Anti-Forensics repo](https://github.com/int0x80/anti-forensics)
 * [GPG / Mutt / Gmail gist](https://gist.github.com/bnagy/8914f712f689cc01c267)
 * [Defeating Forensic Analysis on
